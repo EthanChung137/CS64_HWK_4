@@ -27,7 +27,7 @@ main:
 	syscall
 	li $v0, 5
 	syscall
-	li $t0, 2
+	li $t0, 1
 	move $t1, $v0
 	move $t2, $v0
 	loop:
