@@ -195,8 +195,28 @@ doSwap:
         # }
 
         # TODO: fill in the assembly code here:
-
-
+	#myArray
+	#Use $t3 to keep track of the number of values in the array and we use 48 because we are iterating by 4s 
+	li $t3, 48
+	#Multiply $t0 and $t1 by 4 because addressing
+	li $t0, 0
+	li $t1, 4
+	la $t2, myArray
+	loop:
+	#If $t1 > $t3 (the pointer greater than the size of the array) then jump to finish
+	bge $t1, $t3, finished
+	#Get address for array at position $t0 and put it into $t5 and same for $t1
+	addu $t5, $t2, $t0
+	addu $t6, $t2, $t1
+	#Dereference the values at $t5 and $t6 then load it into $a0 and $a1
+	lw $a0, 0($t5)
+	lw $a1, 0($t6)
+	#Swap
+	sw $a0, 0($t6)
+	sw $a1, 0($t5)
+	addi $t0, $t0, 8
+	addi $t1, $t1, 8
+	j loop
 finished:
         # do ___NOT___ remove this last line
         jr $ra
