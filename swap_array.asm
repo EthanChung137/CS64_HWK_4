@@ -211,11 +211,13 @@ doSwap:
 	#Dereference the values at $t5 and $t6 then load it into $a0 and $a1
 	lw $a0, 0($t5)
 	lw $a1, 0($t6)
-	#Swap
+	#Swap by storing into array using sw
 	sw $a0, 0($t6)
 	sw $a1, 0($t5)
+	#Incrementing the "x" and "y" by 8, which is 2 spaces
 	addi $t0, $t0, 8
 	addi $t1, $t1, 8
+	#Jump back to top of loop
 	j loop
 finished:
         # do ___NOT___ remove this last line
